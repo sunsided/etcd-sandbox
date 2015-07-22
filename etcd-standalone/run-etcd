@@ -23,7 +23,7 @@ docker run \
 	--cpuset-cpus=0 \
 	--name=${CONTAINER_NAME} \
 	quay.io/coreos/etcd:${ETCD_VERSION} \
-	-name "${ETCD_MEMBER__NAME}" \
+	-name "${ETCD_MEMBER_NAME}" \
 	-listen-client-urls http://0.0.0.0:2379,http://0.0.0.0:4001 \
 	-listen-peer-urls http://0.0.0.0:2380 \
 	-advertise-client-urls http://${HOST_IP}:2379,http://${HOST_IP}:4001 \
