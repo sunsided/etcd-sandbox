@@ -1,4 +1,6 @@
 #!/bin/sh
 
+CONTAINER_NAME=etcd
+
 docker stop \
-	etcd
+	${CONTAINER_NAME}
