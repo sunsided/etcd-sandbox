@@ -2,7 +2,7 @@
 
 # https://github.com/coreos/etcd/blob/3db33d19e907df39ac3817ff5cacdb05add7536c/Documentation/docker_guide.md
 
-HOST_IP=127.0.0.1
+HOST_IP=`hostname -i | awk '{print $1}'`
 CONTAINER_NAME=etcd
 
 INITIAL_CLUSTER_TOKEN=etcd-cluster-1
