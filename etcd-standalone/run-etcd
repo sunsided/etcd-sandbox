@@ -1,0 +1,35 @@
+#!/bin/sh
+
+# https://github.com/coreos/etcd/blob/3db33d19e907df39ac3817ff5cacdb05add7536c/Documentation/docker_guide.md
+
+HOST_IP=127.0.0.1
+CONTAINER_NAME=etcd
+
+INITIAL_CLUSTER_TOKEN=etcd-cluster-1
+ETCD_MEMBER_NAME=etcd0
+
+ETCD_VERSION=v2.1.1
+
+# The --memory=128m and --cpuset-cpus=0 flags limit the container to 128 MB of RAM
+# and exactly one CPU.
+
+docker run \
+	--detach=true \
+	--volume=/usr/share/ca-certificates/:/etc/ssl/certs \
+	--publish=2380:2380 \
+	--publish=2379:2379 \
+	--publish=4001:4001 \
+	--memory=128m \
+	--cpuset-cpus=0 \
+	--name=${CONTAINER_NAME} \
+	quay.io/coreos/etcd:${ETCD_VERSION} \
+	-name "${ETCD_MEMBER__NAME}" \
+	-listen-client-urls http://0.0.0.0:2379,http://0.0.0.0:4001 \
+	-listen-peer-urls http://0.0.0.0:2380 \
+	-advertise-client-urls http://${HOST_IP}:2379,http://${HOST_IP}:4001 \
+	-initial-advertise-peer-urls http://${HOST_IP}:2380 \
+	-initial-cluster-token ${INITIAL_CLUSTER_TOKEN} \
+	-initial-cluster "${ETCD_MEMBER_NAME}=http://${HOST_IP}:2380" \
+	-initial-cluster-state new
+
+	

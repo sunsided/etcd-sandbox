@@ -1,0 +1,8 @@
+#!/bin/sh
+
+CONTAINER_NAME=etcd
+
+docker start \
+	${CONTAINER_NAME}
+
+	

@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+# if jsonpp is installed (jsonpp-bin AUR package on Arch)
+# then it will be used as a JSON formatter; otherwise cat is used
+
+command -v jsonpp >/dev/null 2>&1 && jsonpp || cat
