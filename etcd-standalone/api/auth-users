@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+
+curl --silent -L http://127.0.0.1:2379/v2/auth/users | ./.pretty
